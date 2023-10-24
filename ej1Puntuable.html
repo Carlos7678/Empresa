@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <title>Estructuras Objetos Empleados</title>
+    <meta name="author" content="Carlos Soriano Garcia" />
+    <script>
+      function Empleado(nombre) {
+        this.nombre = nombre || "";
+        this.departamento = "Informatica";
+      }
+
+      function Director(nombre) {
+        Empleado.call(this, nombre);
+        this.informes = [];
+      }
+
+      Director.prototype = new Empleado();
+      Director.prototype.constructor = Director;
+
+      function Trabajador(nombre) {
+        Empleado.call(this, nombre);
+        this.proyectos = [];
+      }
+
+      Trabajador.prototype = new Empleado();
+      Trabajador.prototype.constructor = Trabajador;
+
+      function Ingeniero(nombre) {
+        Trabajador.call(this, nombre);
+        this.LenguajeProgramacion = "";
+        this.departamento="Ingeniería"
+      }
+
+      Ingeniero.prototype = new Trabajador();
+      Ingeniero.prototype.constructor = Ingeniero();
+
+      var Director1 = new Director("Carlos");
+      var Director2 = new Director("Stanica");
+      var Director3 = new Director("Juanjo");
+
+      var Ingeniero1 = new Ingeniero("Manolo");
+      var Ingeniero2 = new Ingeniero("Mario");
+      var Ingeniero3 = new Ingeniero("Luigi");
+      var Ingeniero4 = new Ingeniero("Mohamed");
+
+      Ingeniero1.LenguajeProgramacion = "Phyton";
+      Ingeniero2.LenguajeProgramacion = "CSS";
+      Ingeniero3.LenguajeProgramacion = "Java";
+      Ingeniero4.LenguajeProgramacion = "HTML";
+
+      Director2.informes.push("Informe produccion enero");
+      Director2.informes.push("Informe produccion febrero");
+      Director2.informes.push("Informe produccion Marzo");
+      Director3.informes.push("Informe despido becario");
+
+      document.write("****************NOMBRES DIRECTORES****************<br>");
+      document.write("Director1: " + Director1.nombre + "<br>");
+      if (Director1.informes.length > 0) {
+        document.write(
+          "<br>****************Informes de " +
+            Director1.nombre +
+            "****************<br>"
+        );
+        for (var i = 0; i < Director1.informes.length; i++) {
+          document.write(Director1.informes[i]);
+        }
+      }
+      document.write("Director2: " + Director2.nombre + "<br>");
+      document.write("Director3: " + Director3.nombre + "<br>");
+      if (Director2.informes.length > 0) {
+        document.write(
+          "<br>****************Informes de " +
+            Director2.nombre +
+            "****************<br>"
+        );
+        for (var i = 0; i < Director2.informes.length; i++) {
+          document.write(Director2.informes[i] + "<br>");
+        }
+      }
+      if (Director3.informes.length > 0) {
+        document.write(
+          "<br>****************Informes de " +
+            Director3.nombre +
+            "****************<br>"
+        );
+        for (var i = 0; i < Director3.informes.length; i++) {
+          document.write(Director3.informes[i] + "<br>");
+        }
+      }
+
+      document.write("<br>****************Ingenieros****************<br>");
+      document.write("*********El ingeniero "+ Ingeniero1.nombre + " usa el lenguaje "+Ingeniero1.LenguajeProgramacion+" en el departamento "+Ingeniero1.departamento+"<br>");
+      document.write("*********El ingeniero "+ Ingeniero2.nombre + " usa el lenguaje "+Ingeniero2.LenguajeProgramacion+" en el departamento "+Ingeniero2.departamento+"<br>");
+      document.write("*********El ingeniero "+ Ingeniero3.nombre + " usa el lenguaje "+Ingeniero3.LenguajeProgramacion+" en el departamento "+Ingeniero3.departamento+"<br>");
+      document.write("*********El ingeniero "+ Ingeniero4.nombre + " usa el lenguaje "+Ingeniero4.LenguajeProgramacion+" en el departamento "+Ingeniero4.departamento+"<br>");
+    </script>
+  </head>
+  <body>
+   
+  </body>
+</html>
